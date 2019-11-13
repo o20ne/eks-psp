@@ -1,0 +1,21 @@
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: privileged
+subjects:
+  - kind: Group
+    name: system:serviceaccounts:kube-system # all service accounts in target namespace
+    apiGroup: rbac.authorization.k8s.io
+  - kind: Group
+    name: system:serviceaccounts:gatekeeper-system # all service accounts in target namespace
+    apiGroup: rbac.authorization.k8s.io
+  - kind: Group
+    name: system:serviceaccounts:kube-node-lease # all service accounts in target namespace
+    apiGroup: rbac.authorization.k8s.io
+  - kind: Group
+    name: system:serviceaccounts:kube-public # all service accounts in target namespace
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: privileged # A references to the role above
+  apiGroup: rbac.authorization.k8s.io
